@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Surftrick = require("../models/Surftrick.model")
+const User = require("../models/User.model")
 
 router.get("/surftrickList", (req, res, next)=>{
     Surftrick.find()
@@ -32,12 +33,13 @@ router.post("/surftrickList/create", (req, res, next) => {
     const {name, image, description, rateOfDifficulty} = req.body;
 
 
-    
-    //console.log(req.session.user)
-    // const currentUserId = 
+    // = user._id;
+    // console.log(_id)
+    const currentUserId = req.session.user 
+    console.log(currentUserId)
 
 
-    Surftrick.create({name, image, description, rateOfDifficulty, author})
+    Surftrick.create({name, image, description, rateOfDifficulty, author}) 
     .then((trickFromDB) => {
         console.log("the trick was created");
         console.log(trickFromDB);
