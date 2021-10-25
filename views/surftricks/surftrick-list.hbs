@@ -2,8 +2,25 @@
 
 <hr>
 
-
  <a href="/surftrickList/create">Create your Surf Trick!</a>
 
+
+{{#each surftricksArr}}
+<div class="surftrick-list">
+    <p>
+     Surftrick Name:   {{this.name}}
+    </p>
+    <p>
+        Image: {{this.image}}
+    </p>
+    <p>
+        Description: {{this.description}}
+    </p>
+    <p>
+        Rating of Difficulty: {{this.rateOfDifficulty}}
+    </p>
+</div>
+
+{{/each}}
 
 

@@ -2,7 +2,17 @@ const router = require("express").Router();
 const Surftrick = require("../models/Surftrick.model")
 
 router.get("/surftrickList", (req, res, next)=>{
-    res.render("surftricks/surftrick-list")
+    Surftrick.find()
+    .then((surftricksFromDB)=>{
+        const data = {
+            surftricksArr:surftricksFromDB
+        }
+       res.render("surftricks/surftrick-list", data) 
+    })
+    .catch((error)=>{
+        console.log("Error getting list of surftricks from the DB", error);
+        next(error)
+    });
 })
 
 router.get("/surftrickList/create", (req, res, next) =>{
