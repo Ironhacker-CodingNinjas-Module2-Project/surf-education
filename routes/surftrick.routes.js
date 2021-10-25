@@ -41,6 +41,16 @@ router.post("/surftrickList/create", (req, res, next) => {
     });
 });
 
+router.get("/surftrickList/:surftrickId", (req, res, next)=>{
+    Surftrick.findById(req.params.surftrickId)
+    .then((surftricksFromDB)=>{
+        res.render("surftricks/surftrick-detail", surftricksFromDB)
+    })
+    .catch((error)=>{
+        console.log("Error getting details for a single surftrick from DB", error);
+        next(error)
+    });
+})
 
 
 module.exports = router;
