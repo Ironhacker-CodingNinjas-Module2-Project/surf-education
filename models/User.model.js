@@ -17,17 +17,21 @@ const userSchema = new Schema(
       trim: true
     },
     role: {
-      type: Sring,
+      type: String,
       default: "guest"
     },
     passwordHash: {
       type: String,
-      required: [true, 'Passwird is required']
-    } 
+      required: [true, 'Password is required']
+    },
+    surftricks: [{type: Schema.Types.ObjectId, ref: 'Surftrick'}],
+
+    location: String
   },
   {
     timestamps: true,
-  }
+  },
+
 );
 
 const User = model("User", userSchema);

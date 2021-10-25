@@ -14,9 +14,9 @@ const surftrickSchema = new Schema(
             required: true
         },
         rateOfDifficulty: {
-            type: Number, min= "1", max= "10"
+            type: Number, 
         },
-        editor:[{type: Schema.Types.ObjectId, ref: 'User'}]
+        editor:{type: Schema.Types.ObjectId, ref: 'User'}
 
     }
 );
