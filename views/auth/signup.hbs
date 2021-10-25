@@ -1,4 +1,11 @@
 <form action="/auth/signup" method="POST">
+
+   {{#if errorMessage}}
+   <p class="error">
+   {{errorMessage}}
+   </p>
+   {{/if}} 
+
    <label> Username
       <input type="text" name="username">
    </label>
@@ -6,7 +13,7 @@
       <input type="password" name="password">
    </label>
 
-   <button type="submit">Submit</button>
+   <button type="submit">Creat an account!</button>
 </form>
 
 

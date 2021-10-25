@@ -21,11 +21,12 @@ router.get("/signup", isLoggedOut, (req, res) => {
 
 router.post("/signup", isLoggedOut, (req, res) => {
   const { username, password } = req.body;
+  console.log( username, password )
 
   if (!username) {
-    return res
-      .status(400)
-      .render("auth/signup", { errorMessage: "Please provide your username." });
+    return res.status(400).render("auth/signup", { 
+      errorMessage: "Please provide your username." 
+    });
   }
 
   if (password.length < 8) {
@@ -100,6 +101,8 @@ router.get("/login", isLoggedOut, (req, res) => {
 });
 
 router.post("/login", isLoggedOut, (req, res, next) => {
+
+  console.log('SESSION =====> ', req.session);
   const { username, password } = req.body;
 
   if (!username) {
