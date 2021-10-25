@@ -11,7 +11,6 @@ const userSchema = new Schema(
     },
     email: {
       type: String, 
-      required: [true, 'Email is required'],
       unique: true,
       lowercase: true,
       trim: true
@@ -20,12 +19,10 @@ const userSchema = new Schema(
       type: String,
       default: "guest"
     },
-    passwordHash: {
+    password: {
       type: String,
       required: [true, 'Password is required']
     },
-    surftricks: [{type: Schema.Types.ObjectId, ref: 'Surftrick'}],
-
     location: String
   },
   {

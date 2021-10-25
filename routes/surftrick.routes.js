@@ -30,9 +30,18 @@ router.get("/surftrickList/create", (req, res, next) =>{
 
 router.post("/surftrickList/create", (req, res, next) => {
     const {name, image, description, rateOfDifficulty} = req.body;
-    Surftrick.create({name, image, description, rateOfDifficulty})
-    .then(() => {
-        res.redirect("/surftrickList")
+
+
+    
+    //console.log(req.session.user)
+    // const currentUserId = 
+
+
+    Surftrick.create({name, image, description, rateOfDifficulty, author})
+    .then((trickFromDB) => {
+        console.log("the trick was created");
+        console.log(trickFromDB);
+        //res.redirect("/surftrickList")
     })
 
     .catch((error)=>{
