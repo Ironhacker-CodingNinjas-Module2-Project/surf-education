@@ -52,5 +52,35 @@ router.get("/surftrickList/:surftrickId", (req, res, next)=>{
     });
 })
 
+router.get("/surftrickList/:surftrickId/edit", (req, res, next)=>{
+    Surftrick.findById(req.params.surftrickId)
+    .then((surftrickFromDB)=>{
+        console.log(surftrickFromDB)
+        res.render("surftricks/surftrick-edit", surftrickFromDB)
+    })
+    .catch((error)=>{
+        console.log("Error getting destails for a single surftrick from DB", error);
+        next(error)
+    });
+})
+
+router.post("/surftrickList/:surftrickId/edit", (req, res, next)=>{
+    const {name, image, description, rateOfDifficulty} = req.body;
+    const newTrick = {
+        name,
+        image,
+        description, 
+        rateOfDifficulty
+    };
+    Surftrick.findByIdAndUpdate(req.params.surftrickId, newTrick, {new: true})
+    .then((surftrickFromDB)=>{
+        res.redirect("/surftrickList/" + surftrickFromDB._id)
+    })
+    .catch((error)=>{
+        console.log("Error updating details for a single surftrick ", error);
+        next(error)
+    });
+})
+
 
 module.exports = router;
