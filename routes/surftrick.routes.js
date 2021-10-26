@@ -31,12 +31,13 @@ router.get("/surftrickList/create", (req, res, next) =>{
 
 router.post("/surftrickList/create", (req, res, next) => {
     const {name, image, description, rateOfDifficulty} = req.body;
+    // const {author} = req.session.currentUser
 
 
     // = user._id;
     // console.log(_id)
-    const currentUserId = req.session.user 
-    console.log(currentUserId)
+    // const currentUserId = author._id
+    // console.log("surftrick", currentUserId)
 
 
     Surftrick.create({name, image, description, rateOfDifficulty, author}) 

@@ -76,7 +76,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         
         req.session.user = user;
         // console.log(req.session.user)
-        res.redirect("/surftrickList");
+        res.redirect("/surftrickList"); /*or may be redirect UserProfile (that at the same time will be the same of surftricklist* surftrick-lis.hbs= user-profile.hbs*/
       })
       .catch((error) => {
         console.log("....that was an error.....", error)
@@ -132,15 +132,16 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       }
 
       // If user is found based on the username, check if the in putted password matches the one saved in the database
-      bcrypt.compare(password, user.password).then((isSamePassword) => {
+      bcrypt.compare(password, user.password)
+      .then((isSamePassword) => {
         if (!isSamePassword) {
-          return res
-            .status(400)
-            .render("auth/login", { errorMessage: "Wrong credentials." });
-        }
-        //req.session.user = user;
-        req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
-        return res.redirect("/surftrickList");
+          return res.status(400).render("auth/login", { errorMessage: "Wrong credentials." });
+        } else if (user)
+        req.session.currentUser = user
+        console.log("object id", user._id)
+        res.redirect("surftrickList")
+        // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
+        // return res.redirect("/surftrickList");
       });
     })
 
@@ -151,6 +152,20 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       // return res.status(500).render("login", { errorMessage: err.message });
     });
 });
+
+
+
+router.get("/surftrickList", (req, res, next) => {
+  const userInSession = req.session.currentUser
+  console.log("userinsession", userInSession)
+  res.render("surftricks/surftrick-list", {userInSession: req.session.currentUser})
+
+})
+
+
+
+
+
 
 router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
