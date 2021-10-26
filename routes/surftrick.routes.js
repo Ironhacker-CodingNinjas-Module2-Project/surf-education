@@ -91,7 +91,7 @@ router.get("/surftrickList/:surftrickId", (req, res, next)=>{
 router.get("/surftrickList/:surftrickId/edit", (req, res, next)=>{
     Surftrick.findById(req.params.surftrickId)
     .then((surftrickFromDB)=>{
-        console.log(surftrickFromDB)
+        //console.log(surftrickFromDB)
         res.render("surftricks/surftrick-edit", surftrickFromDB)
     })
     .catch((error)=>{
@@ -117,6 +117,81 @@ router.post("/surftrickList/:surftrickId/edit", (req, res, next)=>{
         next(error)
     });
 })
+
+// if (comment.users_id !== req.users.id) {
+//     return res.status(401).json({
+//       error: {
+//         message: `You can only delete your own comments.`
+//       },
+//     });
+//   }
+
+router.post('/surftrickList/:surftrickId/delete', isLoggedIn, (req, res, next) => {
+    const userInSession = req.session.user 
+    Surftrick.findByIdAndRemove()
+    .populate("author")
+    .then((surftricksFromDB)=>{
+        const data = {
+            surftricksInfo:surftricksFromDB
+        }
+        console.log("dataWWOOOOOORKING",{userInSession, data})
+        console.log("USER IN SESSION", {userInSession})
+        console.log("SURF TRICK FROM DB", {surftricksFromDB})
+        //res.render("surftricks/surftrick-list", {userInSession, data}) 
+    })
+    .catch((error)=>{
+        console.log("Error getting list of surftricks from the DB", error);
+        next(error)
+    });
+})
+    //.then((surftricksFromDB)=>{
+        // const data = {
+        //     surftricksArr:surftricksFromDB
+        // }
+
+        // console.log("data",{userInSession, data})
+    // const currentUserId = req.user._id
+    // const surfTrickData = req.params.surftrickId
+
+//     
+//     Surftrick.find()
+//     .populate("author")
+//     
+
+//      
+   
+    // const surfTricksParams = req.params.surftrick
+    //console.log("IS WOORKING INFO", {surfTrickData, currentUserId})
+    //console.log("PARAMS", surfTricksParams )
+
+    
+
+    // .then((surftrickFromDB)=>{
+    //     const data = {
+    //         surftrickInfo:surftrickFromDB
+    //     }
+    //    console.log("DATA WORKING!!!!", data) 
+
+    //if surf.users_id !== req.users.id
+    // console.log(req.params.surftrickId, "what is inside")
+    // if (!req.user._id) {
+    //     return res.status(400).render("auth/signup", {
+    //         errorMessage: "Please provide your username."
+    //     });
+    // } 
+    // .then(() => {
+    //     res.redirect("/surftrickList")
+    // })
+    // .catch((error) => {
+    //         console.log("Error deleting surftrick!!", error);
+//     //         next(error)
+//      });
+// })
+
+
+
+
+
 
 
 module.exports = router;
