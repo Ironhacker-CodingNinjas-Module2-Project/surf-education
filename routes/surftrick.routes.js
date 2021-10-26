@@ -1,14 +1,20 @@
 const router = require("express").Router();
 const Surftrick = require("../models/Surftrick.model")
 const User = require("../models/User.model")
+const isLoggedOut = require("../middleware/isLoggedOut");
+const isLoggedIn = require("../middleware/isLoggedIn");
 
-router.get("/surftrickList", (req, res, next)=>{
+router.get("/surftrickList", isLoggedIn, (req, res, next)=>{
+    const userInSession = req.session.user 
     Surftrick.find()
+    .populate("author")
     .then((surftricksFromDB)=>{
         const data = {
             surftricksArr:surftricksFromDB
         }
-       res.render("surftricks/surftrick-list", data) 
+
+        console.log("data",{userInSession, data})
+       res.render("surftricks/surftrick-list", {userInSession, data}) 
     })
     .catch((error)=>{
         console.log("Error getting list of surftricks from the DB", error);
@@ -16,35 +22,53 @@ router.get("/surftrickList", (req, res, next)=>{
     });
 })
 
-router.get("/surftrickList/create", (req, res, next) =>{
-    Surftrick.find()
-    .then((allSurftricks)=>{
-        // res.send("hello World")
-        res.render("surftricks/surftrick-create", {surftricksArr: allSurftricks})
-    })
-    .catch((error)=>{
-        console.log("Error getting surftricks from the DB", error);
-        next(error)
-    });
+router.get("/surftrickList/create", isLoggedIn, (req, res, next) =>{
+    res.render("surftricks/surftrick-create")
+    // Surftrick.find()
+    // .then((surftricksFromDB)=>{
+    //     console.log(surftricksFromDB)
+    //     const surftricksData = {surftrickArr: surftricksFromDB}
+    //     // res.send("hello World")
+    //     res.render("surftricks/surftrick-create", surftricksData)
+    // })
+    // .catch((error)=>{
+    //     console.log("Error getting surftricks from the DB", error);
+    //     next(error)
+    // });
 });
 
 
-router.post("/surftrickList/create", (req, res, next) => {
+router.post("/surftrickList/create", isLoggedIn, (req, res, next) => {
     const {name, image, description, rateOfDifficulty} = req.body;
-    // const {author} = req.session.currentUser
+    //console.log("author", author)
+    const author = req.user._id
+    const newSurftrick = {
+        name,
+        image, 
+        description, 
+        rateOfDifficulty, 
+        author
 
+    }
 
-    // = user._id;
+    
+    console.log("New surf trick",newSurftrick)
+
+    // 
     // console.log(_id)
     // const currentUserId = author._id
     // console.log("surftrick", currentUserId)
 
 
-    Surftrick.create({name, image, description, rateOfDifficulty, author}) 
-    .then((trickFromDB) => {
-        console.log("the trick was created");
-        console.log(trickFromDB);
-        //res.redirect("/surftrickList")
+    //Surftrick.create(newSurftrick.username) 
+    Surftrick.create(newSurftrick) 
+       .then((newSurftrick) => {
+        console.log("creating NEW surf Trick ", newSurftrick)
+        console.log("AUTHOR creating NEW surf Trick", newSurftrick.author)
+
+        // console.log("the trick was created");
+        // console.log(trickFromDB);
+        res.redirect("/surftrickList")
     })
 
     .catch((error)=>{

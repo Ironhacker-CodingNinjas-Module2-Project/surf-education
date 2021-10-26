@@ -137,9 +137,9 @@ router.post("/login", isLoggedOut, (req, res, next) => {
         if (!isSamePassword) {
           return res.status(400).render("auth/login", { errorMessage: "Wrong credentials." });
         } else if (user)
-        req.session.currentUser = user
-        console.log("object id", user._id)
-        res.redirect("surftrickList")
+        req.session.user = user
+        // console.log("object id", user._id)
+        res.redirect("/surftrickList")
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
         // return res.redirect("/surftrickList");
       });
@@ -155,13 +155,13 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 
 
 
-router.get("/surftrickList", (req, res, next) => {
-  const userInSession = req.session.currentUser
-  console.log("userinsession", userInSession)
-  res.render("surftricks/surftrick-list", {userInSession: req.session.currentUser})
+// router.get("/surftrickList", (req, res, next) => {
+//   const userInSession = req.session.currentUser
+//   console.log("userinsession", userInSession)
+//   res.render("surftricks/surftrick-list", {userInSession: req.session.currentUser})
 
-})
-
+// })
+//CHANGE ROUTE//
 
 
 
@@ -174,7 +174,8 @@ router.get("/logout", isLoggedIn, (req, res) => {
         .status(500)
         .render("auth/logout", { errorMessage: err.message });
     }
-    res.redirect("/");
+    res.send("bye bye it works")
+    // res.redirect("/");
   });
 });
 

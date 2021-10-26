@@ -30,7 +30,7 @@ const index = require("./routes/index");
 app.use("/", index);
 
 const authRoutes = require("./routes/auth");
-app.use("/auth", authRoutes);
+app.use("/", authRoutes); //CHANGE
 
 const surftrickRoutes = require("./routes/surftrick.routes");
 app.use("/", surftrickRoutes);

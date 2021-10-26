@@ -30,10 +30,13 @@
 {{/if}}
 
 
-{{#each surftricksArr}}
+{{#each data.surftricksArr}}
 <div class="surftrick-list">
+
+    <p>Author: {{this.author.username}}</p>
+
     <p>
-     Surftrick Name:   {{this.name}}
+     Surftrick Name: {{this.name}}
     </p>
     <p>
         Image: {{this.image}}
