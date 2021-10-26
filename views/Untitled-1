@@ -1,0 +1,19 @@
+
+
+1. Functionality to Register
+   - remember, whatever is required in the model, we need to provide it (when we call User.create)
+
+
+
+2. Functionality to Login
+
+
+
+
+3. Functionality to Create Tricks (storing owner)
+
+
+
+4. Functionality to Update Tricks (storing owner)
+
+5. Functionality to Delete Tricks

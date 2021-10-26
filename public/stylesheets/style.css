@@ -1,12 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Roboto:100,300,700');
+
 body {
+  background-color: #BDB9B3;
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: Roboto;
+  font-size: 14px 
 }
 
 a {
-  color: #00b7ff;
+  color: #131314;
+  text-decoration: none;
+  font-size: 1.5em;
 }
 
-h1 {
-  color: 15px;
+form {
+  margin: 30px auto;
+  width: 380px;
+}
+
+form label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+form input,
+form button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+form button {
+  background: #5F7376;
+  border: 1px solid #5F7376;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s ease background;
+  width: 100%;
+}
+
+form button:hover {
+  background: #95A1A2;
+  color: #fff;
+  transition: 0.3s ease background;
+}
+
+.error {
+  background: #5F7376;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+}
+
+ul {
+  border-bottom: 2px solid #5F7376;
+  height: 30px;
+  padding: 1em 0;
+  list-style-type: none;
+}
+
+ul li {
+  line-height: 20px;
 }
