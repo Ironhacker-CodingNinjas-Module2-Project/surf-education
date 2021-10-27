@@ -4,6 +4,7 @@ const User = require("../models/User.model")
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
+
 router.get("/surftrickList", isLoggedIn, (req, res, next)=>{
     const userInSession = req.session.user 
     Surftrick.find()
@@ -94,7 +95,7 @@ router.post("/surftrickList/:surftrickId/edit", isLoggedIn, (req, res, next)=>{
             })
 
         }else {
-            return res.redirect("/surftrickList")
+            res.render("surftricks/surftrick-list", { error: "Opps can not edit this trick!" })
         }
     })
 
@@ -105,31 +106,27 @@ router.post("/surftrickList/:surftrickId/edit", isLoggedIn, (req, res, next)=>{
 })
 
 
-router.post('/surftrickList/:surftrickId/delete', isLoggedIn, (req, res, next) => {
+router.post('/surftrickList/:surftrickId/delete', isLoggedIn,  (req, res, next) => {
     const author = req.user._id 
     
     Surftrick.findById(req.params.surftrickId)
         .then((surftrickFromDB)=>{
 
             if(surftrickFromDB.author == req.user._id) {
-                console.log("IT WOOOOOOORK")
                 Surftrick.findByIdAndRemove(req.params.surftrickId)
                 .then(() =>{
                     res.redirect("/surftrickList")
                 }) 
             }else {
-                return res.redirect("/surftrickList")
+                res.render("surftricks/surftrick-list", { error: "Opps you are not a creator!" })
             }
 
         })
-
         .catch((error)=>{
-            console.log("Error updating details for a single surftrick ", error);
+            console.log("Error deleating details for a single surftrick ", error);
         next(error)
 
-
         })
-
 })
    
 
