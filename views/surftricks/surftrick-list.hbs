@@ -2,25 +2,19 @@
 
 <hr>
 
+<nav class="navbar navbar-expand-lg">
+    <a class="nav-link" href="/surftrickList/create">Create your Surf Trick!</a>
 
- <nav>
-    <ul>
-        <li>
-        <a href="/surftrickList/create">Create your Surf Trick!</a>
-        </li>
-    </ul>
 </nav>
 
 
-
-
 {{#if userInSession}}
-    <h2>Welcome, {{ userInSession.username }}!</h2>
-    <p>This is your profile page !</p>
+<h2>Welcome, {{ userInSession.username }}!</h2>
+<p>This is your profile page !</p>
 
 
 {{else}}
-    <p>Still no logged in user, sorry!</p>
+<p>Still no logged in user, sorry!</p>
 {{/if}}
 
 
@@ -30,14 +24,16 @@
     <p>Author: {{this.author.username}}</p>
 
     <p>
-     Surftrick Name: {{this.name}}
+        Surftrick Name: {{this.name}}
     </p>
-    <p>
+
+    <img src="{{this.imageURL}}" class="card-img-top">
+    {{!-- <p>
         Image: {{this.image}}
-    </p>
+    </p> --}}
     <p>
         Rating of Difficulty: {{this.rateOfDifficulty}}
-    </p> 
+    </p>
 
     <a href="/surftrickList/{{this._id}}">More details</a>
 </div>
@@ -47,5 +43,3 @@
 
 
 {{/each}}
-
-

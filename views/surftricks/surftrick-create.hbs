@@ -2,31 +2,63 @@
 
 <hr>
 
-<form action="/surftrickList/create" method= "post">
+<div class="row">
+    <div class="col-md-6">
+        <form action="/surftrickList/create" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Trick Name:
+                    <input type="text" name="name" class="form-control" />
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Description:
+                    <textarea name="description" cols="30" rows="4"></textarea>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Image:
+                    <input type="file" name="surftrick-image" class="form-control-file" />
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Rating of difficulty:
+                    <input type="number" name="rateOfDifficulty" min="1" max="10" class="form-control-file" />
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit your trick!</button>
+        </form>
+    </div>
+</div>
+
+{{!--
+<form action="/surftrickList/create" method="post""> --}}
 
 
 {{!-- 
     <label>Author
-         <input type="text" name= "name"/>
-    </label> --}}
+         <input type=" text" name="name" />
+</label> --}}
+{{!--
+<label>Trick Name
+    <input type="text" name="name" />
+</label>
 
-    <label>Trick Name
-        <input type="text" name= "name"/>
-    </label>
+<label>Upload your image
+    <input type="file" name="surftrick-image" />
+</label>
 
-    <label>Upload your image
-        <input type="text" name= "image"/>
-    </label>
-
-    <label>Description
-        <textarea name= "description" cols= "30" rows= "4"></textarea>
-    </label>
+<label>Description
+    <textarea name="description" cols="30" rows="4"></textarea>
+</label> --}}
 
 
-    <label>Rating of difficulty
-        <input type="number" name= "rateOfDifficulty" min="1" max="10" />
-    </label>
+{{!-- <label>Rating of difficulty
+    <input type="number" name="rateOfDifficulty" min="1" max="10" />
+</label> --}}
 
-    <button type="submit">Submit your trick!</button>
+{{!-- <button type="submit">Submit your trick!</button>
 
-</form>
+</form> --}}
