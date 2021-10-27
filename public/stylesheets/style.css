@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Roboto:100,300,700');
 
+/* Deep Blue: #003B46
+Ocean : #07575B
+Wave:#66A5AD
+Seaform: #C4DFE6 */
+
 body {
   background-color: #BDB9B3;
   padding: 50px;
@@ -37,10 +42,10 @@ form button {
 }
 
 form button {
-  background: #5F7376;
+  background: #07575B;
   border: 1px solid #5F7376;
   border-radius: 4px;
-  color: #fff;
+  color: #C4DFE6;
   cursor: pointer;
   display: inline-block;
   font-size: 14px;
@@ -58,13 +63,14 @@ form button:hover {
 }
 
 .error {
-  background: #5F7376;
+  background: #003B46;
   box-sizing: border-box;
-  color: #fff;
+  color: #C4DFE6;
   margin: 20px auto;
   padding: 20px;
   width: 100%;
 }
+
 
 ul {
   border-bottom: 2px solid #5F7376;
@@ -75,4 +81,116 @@ ul {
 
 ul li {
   line-height: 20px;
+}
+
+
+/* HOMEPAGE "/" */
+
+
+.hand-img {
+  height: 40px;
+  width: 40px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row ;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.logout{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.name-app{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#links-homepage {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  margin-top: 20rem;
+}
+
+.link-signup {
+  background: #07575B;
+  border: 1px solid #5F7376;
+  border-radius: 4px;
+  color: #C4DFE6;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s ease background;
+  margin-right: 5rem;
+  
+}
+
+.link-login {
+  background: #07575B;
+  border: 1px solid #5F7376;
+  border-radius: 4px;
+  color: #C4DFE6;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s ease background;
+  margin-left: 5rem;
+}
+
+
+.link-logout {
+  background: #07575B;
+  border: 1px solid #5F7376;
+  border-radius: 4px;
+  color: #C4DFE6;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s ease background;
+  text-align: center;
+}
+
+
+.link-login:hover {
+  background: #95A1A2;
+  color: #fff;
+  transition: 0.3s ease background;
+}
+
+.link-logout:hover {
+  background: #95A1A2;
+  color: #fff;
+  transition: 0.3s ease background;
+
+}
+
+.link-signup:hover {
+  background: #95A1A2;
+  color: #fff;
+  transition: 0.3s ease background;
+}
+
+/* SIGN-UP PAGE */
+
+.form-register {
+  margin-top: 50rem;
+  display: flex;
+  
 }

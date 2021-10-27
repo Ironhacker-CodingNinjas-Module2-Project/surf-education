@@ -9,15 +9,13 @@ router.get("/surftrickList", isLoggedIn, (req, res, next)=>{
     const userInSession = req.session.user 
     Surftrick.find()
     .populate("author")
-    .then((surftricksFromDB)=>{
+    .then((surftricksFromDB)=> {
         const data = {
             surftricksArr:surftricksFromDB
         }
-
-        console.log("data",{userInSession, data})
        res.render("surftricks/surftrick-list", {userInSession, data}) 
     })
-    .catch((error)=>{
+    .catch((error)=> {
         console.log("Error getting list of surftricks from the DB", error);
         next(error)
     });
@@ -28,10 +26,8 @@ router.get("/surftrickList/create", isLoggedIn, (req, res, next) =>{
    
 });
 
-
 router.post("/surftrickList/create", isLoggedIn, (req, res, next) => {
     const {name, image, description, rateOfDifficulty} = req.body;
-    //console.log("author", author)
     const author = req.user._id
     const newSurftrick = {
         name,
@@ -39,14 +35,11 @@ router.post("/surftrickList/create", isLoggedIn, (req, res, next) => {
         description, 
         rateOfDifficulty, 
         author
-
     }
-    
     Surftrick.create(newSurftrick) 
        .then((newSurftrick) => {
         res.redirect("/surftrickList")
     })
-
     .catch((error)=>{
         console.log("Error displaying new surftricks", error);
         next(error)
@@ -128,10 +121,6 @@ router.post('/surftrickList/:surftrickId/delete', isLoggedIn,  (req, res, next) 
 
         })
 })
-
-
-
-
 
 
 
