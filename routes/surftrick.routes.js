@@ -3,43 +3,45 @@ const Surftrick = require("../models/Surftrick.model")
 const User = require("../models/User.model")
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const fileUploader = require('../config/cloudinary.config');
 
+<<<<<<< HEAD
 
 router.get("/surftrickList", isLoggedIn, (req, res, next)=>{
     const userInSession = req.session.user 
+=======
+router.get("/surftrickList", isLoggedIn, (req, res, next) => {
+    const userInSession = req.session.user
+>>>>>>> 47ae903f5dde6251674740f27438ef62eb7e485a
     Surftrick.find()
-    .populate("author")
-    .then((surftricksFromDB)=>{
-        const data = {
-            surftricksArr:surftricksFromDB
-        }
-
-        console.log("data",{userInSession, data})
-       res.render("surftricks/surftrick-list", {userInSession, data}) 
-    })
-    .catch((error)=>{
-        console.log("Error getting list of surftricks from the DB", error);
-        next(error)
-    });
+        .populate("author")
+        .then((surftricksFromDB) => {
+            const data = {
+                surftricksArr: surftricksFromDB
+            }
+            res.render("surftricks/surftrick-list", { userInSession, data })
+        })
+        .catch((error) => {
+            console.log("Error getting list of surftricks from the DB", error);
+            next(error)
+        });
 })
 
-router.get("/surftrickList/create", isLoggedIn, (req, res, next) =>{
+router.get("/surftrickList/create", isLoggedIn, (req, res, next) => {
     res.render("surftricks/surftrick-create")
    
 });
 
 
-router.post("/surftrickList/create", isLoggedIn, (req, res, next) => {
-    const {name, image, description, rateOfDifficulty} = req.body;
-    //console.log("author", author)
+router.post("/surftrickList/create", fileUploader.single('surftrick-image'), isLoggedIn, (req, res, next) => {
+    const { name, image, description, rateOfDifficulty } = req.body;
     const author = req.user._id
     const newSurftrick = {
         name,
-        image, 
-        description, 
-        rateOfDifficulty, 
+        imageURL: req.file.path,
+        description,
+        rateOfDifficulty,
         author
-
     }
     
     Surftrick.create(newSurftrick) 
@@ -53,15 +55,17 @@ router.post("/surftrickList/create", isLoggedIn, (req, res, next) => {
     });
 });
 
-router.get("/surftrickList/:surftrickId", (req, res, next)=>{
+
+router.get("/surftrickList/:surftrickId", isLoggedIn, (req, res, next) => {
     Surftrick.findById(req.params.surftrickId)
-    .then((surftricksFromDB)=>{
-        res.render("surftricks/surftrick-detail", surftricksFromDB)
-    })
-    .catch((error)=>{
-        console.log("Error getting details for a single surftrick from DB", error);
-        next(error)
-    });
+        .populate("author")
+        .then((surftricksFromDB) => {
+            res.render("surftricks/surftrick-detail", surftricksFromDB)
+        })
+        .catch((error) => {
+            console.log("Error getting details for a single surftrick from DB", error);
+            next(error)
+        });
 })
 
 router.get("/surftrickList/:surftrickId/edit", isLoggedIn, (req, res, next)=>{
