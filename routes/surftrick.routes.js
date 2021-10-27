@@ -23,6 +23,7 @@ router.get("/surftrickList", isLoggedIn, (req, res, next) => {
 
 router.get("/surftrickList/create", isLoggedIn, (req, res, next) => {
     res.render("surftricks/surftrick-create")
+   
 });
 
 
@@ -36,15 +37,16 @@ router.post("/surftrickList/create", fileUploader.single('surftrick-image'), isL
         rateOfDifficulty,
         author
     }
+    
+    Surftrick.create(newSurftrick) 
+       .then((newSurftrick) => {
+        res.redirect("/surftrickList")
+    })
 
-    Surftrick.create(newSurftrick)
-        .then((newSurftrick) => {
-            res.redirect("/surftrickList")
-        })
-        .catch((error) => {
-            console.log("Error displaying new surftricks", error);
-            next(error)
-        });
+    .catch((error)=>{
+        console.log("Error displaying new surftricks", error);
+        next(error)
+    });
 });
 
 
@@ -60,69 +62,75 @@ router.get("/surftrickList/:surftrickId", isLoggedIn, (req, res, next) => {
         });
 })
 
-router.get("/surftrickList/:surftrickId/edit", isLoggedIn, (req, res, next) => {
+router.get("/surftrickList/:surftrickId/edit", isLoggedIn, (req, res, next)=>{
     Surftrick.findById(req.params.surftrickId)
-        .then((surftrickFromDB) => {
-            console.log(surftrickFromDB)
-            res.render("surftricks/surftrick-edit", surftrickFromDB)
-        })
-        .catch((error) => {
-            console.log("Error getting destails for a single surftrick from DB", error);
-            next(error)
-        });
+    .then((surftrickFromDB)=>{
+        res.render("surftricks/surftrick-edit", surftrickFromDB)
+    })
+    .catch((error)=>{
+        console.log("Error getting destails for a single surftrick from DB", error);
+        next(error)
+    });
 })
 
-router.post("/surftrickList/:surftrickId/edit", (req, res, next) => {
-    const { name, image, description, rateOfDifficulty } = req.body;
+router.post("/surftrickList/:surftrickId/edit", isLoggedIn, (req, res, next)=>{
+    const author = req.user._id 
+    const {name, image, description, rateOfDifficulty} = req.body;
     const newTrick = {
         name,
         image,
-        description,
-        rateOfDifficulty
+        description, 
+        rateOfDifficulty,
     };
-    Surftrick.findByIdAndUpdate(req.params.surftrickId, newTrick, { new: true })
-        .then((surftrickFromDB) => {
-            res.redirect("/surftrickList/" + surftrickFromDB._id)
-        })
-        .catch((error) => {
-            console.log("Error updating details for a single surftrick ", error);
-            next(error)
-        });
-})
 
-router.post('/surftrickList/:surftrickId/delete', isLoggedIn, (req, res, next) => {
-    const author = req.user._id
-    Surftrick.findByIdAndRemove(req.params.surftrickId)
-    console.log(req.params.surftrickId, "what is inside")
-    .then(() => {
-        res.redirect("/surftrickList")
+    Surftrick.findById(req.params.surftrickId)
+    .then((surftrickFromDB) => {
+        console.log("surfTrickDB", surftrickFromDB)
+        if(surftrickFromDB.author == req.user._id){
+            Surftrick.findByIdAndUpdate(req.params.surftrickId, newTrick, {new: true})
+            .then((surftrickFromDB)=>{
+                res.redirect("/surftrickList/" + surftrickFromDB._id)
+            })
+
+        }else {
+            return res.redirect("/surftrickList")
+        }
     })
-        .catch((error) => {
-            console.log("Error deleting surftrick!!", error);
-            next(error)
-        });
-        
+
+    .catch((error)=>{
+        console.log("Error updating details for a single surftrick ", error);
+        next(error)
+    });
 })
 
 
 router.post('/surftrickList/:surftrickId/delete', isLoggedIn, (req, res, next) => {
-    const userInSession = req.session.user
-    Surftrick.findByIdAndRemove()
-        .populate("author")
-        .then((surftricksFromDB) => {
-            const data = {
-                surftricksInfo: surftricksFromDB
-            }
-            console.log("dataWWOOOOOORKING", { userInSession, data })
-            console.log("USER IN SESSION", { userInSession })
-            console.log("SURF TRICK FROM DB", { surftricksFromDB })
-        })
-        .catch((error) => {
-            console.log("Error getting list of surftricks from the DB", error);
-            next(error)
-        });
-})
+    const author = req.user._id 
+    
+    Surftrick.findById(req.params.surftrickId)
+        .then((surftrickFromDB)=>{
 
+            if(surftrickFromDB.author == req.user._id) {
+                console.log("IT WOOOOOOORK")
+                Surftrick.findByIdAndRemove(req.params.surftrickId)
+                .then(() =>{
+                    res.redirect("/surftrickList")
+                }) 
+            }else {
+                return res.redirect("/surftrickList")
+            }
+
+        })
+
+        .catch((error)=>{
+            console.log("Error updating details for a single surftrick ", error);
+        next(error)
+
+
+        })
+
+})
+   
 
 
 
