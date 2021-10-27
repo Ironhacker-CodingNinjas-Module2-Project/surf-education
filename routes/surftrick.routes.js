@@ -40,7 +40,6 @@ router.post("/surftrickList/create", isLoggedIn, (req, res, next) => {
         author
 
     }
-
     
     Surftrick.create(newSurftrick) 
        .then((newSurftrick) => {
@@ -64,10 +63,9 @@ router.get("/surftrickList/:surftrickId", (req, res, next)=>{
     });
 })
 
-router.get("/surftrickList/:surftrickId/edit", (req, res, next)=>{
+router.get("/surftrickList/:surftrickId/edit", isLoggedIn, (req, res, next)=>{
     Surftrick.findById(req.params.surftrickId)
     .then((surftrickFromDB)=>{
-        //console.log(surftrickFromDB)
         res.render("surftricks/surftrick-edit", surftrickFromDB)
     })
     .catch((error)=>{
@@ -78,19 +76,13 @@ router.get("/surftrickList/:surftrickId/edit", (req, res, next)=>{
 
 router.post("/surftrickList/:surftrickId/edit", isLoggedIn, (req, res, next)=>{
     const author = req.user._id 
-    console.log("req user", req.user._id)
     const {name, image, description, rateOfDifficulty} = req.body;
-    console.log("reqbody", req.body)
     const newTrick = {
         name,
         image,
         description, 
         rateOfDifficulty,
-        
     };
-
-
-    console.log("newTrick", newTrick)
 
     Surftrick.findById(req.params.surftrickId)
     .then((surftrickFromDB) => {
@@ -104,10 +96,8 @@ router.post("/surftrickList/:surftrickId/edit", isLoggedIn, (req, res, next)=>{
         }else {
             return res.redirect("/surftrickList")
         }
-
     })
 
-   
     .catch((error)=>{
         console.log("Error updating details for a single surftrick ", error);
         next(error)
@@ -120,11 +110,6 @@ router.post('/surftrickList/:surftrickId/delete', isLoggedIn, (req, res, next) =
     
     Surftrick.findById(req.params.surftrickId)
         .then((surftrickFromDB)=>{
-            console.log(surftrickFromDB)
-
-            console.log("surftrick from db", surftrickFromDB.author)
-            console.log("req USER", req.user._id)
-
 
             if(surftrickFromDB.author == req.user._id) {
                 console.log("IT WOOOOOOORK")
@@ -134,7 +119,6 @@ router.post('/surftrickList/:surftrickId/delete', isLoggedIn, (req, res, next) =
                 }) 
             }else {
                 return res.redirect("/surftrickList")
-                
             }
 
         })
@@ -145,9 +129,6 @@ router.post('/surftrickList/:surftrickId/delete', isLoggedIn, (req, res, next) =
 
 
         })
-
-
-
 
 })
    
