@@ -1,4 +1,3 @@
-
 <h1>{{this.title}}</h1>
 
 <hr />
@@ -19,10 +18,12 @@
 <a href="/surftrickList/{{this._id}}/edit">Edit</a>
 
 <form id="delete-form" action="/surftrickList/{{this._id}}/delete" method="POST">
+    
+   
     <button>Delete Surf Trick!</button>
+    
 </form>
-
+{{errorMessage}}
 <hr />
 
 <a href="/surftrickList">Back</a>
-
