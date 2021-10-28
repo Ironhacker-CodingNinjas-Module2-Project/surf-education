@@ -70,27 +70,6 @@ form button {
   transition: 0.3s ease background;
 }
 
-form button {
-  background: #07575B;
-  border: 1px solid #5F7376;
-  border-radius: 4px;
-  color: #C4DFE6;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 14px;
-  padding: 8px 16px;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: 0.3s ease background;
-  width: 100%;
-}
-
-form button:hover {
-  background: #95A1A2;
-  color: #fff;
-  transition: 0.3s ease background;
-}
-
 .error {
   background: #003B46;
   box-sizing: border-box;
@@ -99,7 +78,6 @@ form button:hover {
   padding: 20px;
   width: 30%;
 }
-
 
 ul {
   border-bottom: 2px solid #5F7376;
@@ -175,11 +153,11 @@ h5{
 
 /* Surftrickdetail "/" */
 .box{
-float: left;
- margin: 150px auto;
- width: 50%;
- padding: 8px;
- align-self: flex-start;
+  float: left;
+  margin: 150px auto;
+  width: 50%;
+  padding: 8px;
+  align-self: flex-start;
 }
 
  .imgDetail{
@@ -214,6 +192,77 @@ h3{
   font-weight: bold;
 }
 
+.link-edit{
+  background: #07575B;
+  border: 1px solid #5F7376;
+  border-radius: 4px;
+  color: #C4DFE6;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s ease background;
+  width: 7%;
+  text-align: center;
+}
+
+.link-edit:hover {
+  background: #95A1A2;
+  color: #fff;
+  transition: 0.3s ease background;
+}
+
+form button {
+  background: #07575B;
+  border: 1px solid #5F7376;
+  border-radius: 4px;
+  color: #C4DFE6;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s ease background;
+  width: 100%;
+  
+}
+
+form button:hover {
+  background: #95A1A2;
+  color: #fff;
+  transition: 0.3s ease background;
+}
+
+.link-delete {
+  display: flex;
+
+}
+
+.link-back{
+  background: #07575B;
+  border: 1px solid #5F7376;
+  border-radius: 4px;
+  color: #C4DFE6;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s ease background;
+  width: 7%;
+  text-align: center;
+
+}
+
+.link-back:hover {
+  background: #95A1A2;
+  color: #fff;
+  transition: 0.3s ease background;
+}
 /* HOMEPAGE "/" */
 
 
@@ -229,7 +278,6 @@ h3{
   justify-content: space-between;
   
 }
-
 
 .name-app{
   display: flex;
@@ -380,9 +428,5 @@ h3{
 
 .image-details{
   width: 50px;
-}
-
-.container-img-details{
-  displaye
 }
 

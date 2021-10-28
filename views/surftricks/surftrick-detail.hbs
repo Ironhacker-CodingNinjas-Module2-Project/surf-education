@@ -1,38 +1,26 @@
-
-    <div class="box">
-        <img class="imgDetail" src="{{surftrickFromDB.image}}">
-    </div>
-    <div class="text">
-        <h3>{{surftrickFromDB.name}}</h3>
-        
-        <p>{{surftrickFromDB.description}}</p>
-
-        <h3>Rating:</h3>
-        <h3 class="ratingNmr">{{surftrickFromDB.rateOfDifficulty}}</h3>
-    </div>
-
-
-
+<a class="link-back" href="/surftrickList">Back</a>
+<div class="links-details">
 {{#if isOwner}}
-
-
-<a href="/surftrickList/{{surftrickFromDB._id}}/edit">Edit</a>
-
-<form id="delete-form" action="/surftrickList/{{surftrickFromDB._id}}/delete" method="POST">
-
-    <button>Delete Surf Trick!</button>
-
-</form>
-
+    <a class="link-edit" href="/surftrickList/{{surftrickFromDB._id}}/edit">Edit</a>
+    <form id="delete-form" action="/surftrickList/{{surftrickFromDB._id}}/delete" method="POST">
+        <button class="link-delete">Delete Surf Trick!</button>
+    </form>
 {{/if}}
-
-
+</div>
 
 <hr />
+<div class="box">
+    <img class="imgDetail" src="{{surftrickFromDB.image}}">
+</div>
+<div class="text">
+    <h3>{{surftrickFromDB.name}}</h3>
+    <p>{{surftrickFromDB.description}}</p>
+    <h3>Rating:</h3>
+    <h3 class="ratingNmr">{{surftrickFromDB.rateOfDifficulty}}</h3>
+</div>
 
-{{errorMessage}}
 
 
 
 
-<a href="/surftrickList">Back</a>
+
