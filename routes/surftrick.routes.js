@@ -52,10 +52,17 @@ router.post("/surftrickList/create", fileUploader.single('image'), isLoggedIn, (
     });
 });
 
-router.get("/surftrickList/:surftrickId", (req, res, next)=>{
+router.get("/surftrickList/:surftrickId", isLoggedIn, (req, res, next)=>{
     Surftrick.findById(req.params.surftrickId)
-    .then((surftricksFromDB)=>{
-        res.render("surftricks/surftrick-detail", surftricksFromDB)
+    .then((surftrickFromDB)=>{
+
+        let isOwner;
+        if(surftrickFromDB.author == req.user._id){
+            isOwner = true;
+        } else {
+            isOwner = false;
+        }
+        res.render("surftricks/surftrick-detail", {isOwner,surftrickFromDB})
     })
     .catch((error)=>{
         console.log("Error getting details for a single surftrick from DB", error);
@@ -116,7 +123,9 @@ router.post("/surftrickList/:surftrickId/edit", isLoggedIn, fileUploader.single(
 
 
 router.post('/surftrickList/:surftrickId/delete', isLoggedIn,  (req, res, next) => {
-    const author = req.user._id 
+    // const author = req.user._id 
+    // const userInSession = req.user._id;
+    
     
     Surftrick.findById(req.params.surftrickId)
         .then((surftrickFromDB)=>{
@@ -126,8 +135,9 @@ router.post('/surftrickList/:surftrickId/delete', isLoggedIn,  (req, res, next) 
                 .then(() =>{
                     res.redirect("/surftrickList")
                 }) 
-            }else {
-                res.render("surftricks/surftrick-list", { error: "Opps you are not a creator!" })
+            } else {
+                res.redirect("/surftrickList")
+                // res.render("surftricks/surftrick-list", { error: "Opps you are not a creator!" })
             }
 
         })
