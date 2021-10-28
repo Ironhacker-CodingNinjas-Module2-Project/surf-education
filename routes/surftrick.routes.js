@@ -6,23 +6,23 @@ const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 
-router.get("/surftrickList", isLoggedIn, (req, res, next) => {
-    const userInSession = req.session.user
+router.get("/surftrickList", isLoggedIn, (req, res, next)=>{
+    const userInSession = req.session.user 
     Surftrick.find()
-        .populate("author")
-        .then((surftricksFromDB) => {
-            const data = {
-                surftricksArr: surftricksFromDB
-            }
-            res.render("surftricks/surftrick-list", { userInSession, data })
-        })
-        .catch((error) => {
-            console.log("Error getting list of surftricks from the DB", error);
-            next(error)
-        });
+    .populate("author")
+    .then((surftricksFromDB)=> {
+        const data = {
+            surftricksArr:surftricksFromDB
+        }
+       res.render("surftricks/surftrick-list", {userInSession, data}) 
+    })
+    .catch((error)=> {
+        console.log("Error getting list of surftricks from the DB", error);
+        next(error)
+    });
 })
 
-router.get("/surftrickList/create", isLoggedIn, (req, res, next) => {
+router.get("/surftrickList/create", isLoggedIn, (req, res, next) =>{
     res.render("surftricks/surftrick-create")
    
 });
@@ -46,24 +46,21 @@ router.post("/surftrickList/create", fileUploader.single('image'), isLoggedIn, (
            console.log("Info from DB",newSurfTrickFromDB )
         res.redirect("/surftrickList")
     })
-
     .catch((error)=>{
         console.log("Error displaying new surftricks", error);
         next(error)
     });
 });
 
-
-router.get("/surftrickList/:surftrickId", isLoggedIn, (req, res, next) => {
+router.get("/surftrickList/:surftrickId", (req, res, next)=>{
     Surftrick.findById(req.params.surftrickId)
-        .populate("author")
-        .then((surftricksFromDB) => {
-            res.render("surftricks/surftrick-detail", surftricksFromDB)
-        })
-        .catch((error) => {
-            console.log("Error getting details for a single surftrick from DB", error);
-            next(error)
-        });
+    .then((surftricksFromDB)=>{
+        res.render("surftricks/surftrick-detail", surftricksFromDB)
+    })
+    .catch((error)=>{
+        console.log("Error getting details for a single surftrick from DB", error);
+        next(error)
+    });
 })
 
 router.get("/surftrickList/:surftrickId/edit", isLoggedIn, (req, res, next)=>{
@@ -107,7 +104,7 @@ router.post("/surftrickList/:surftrickId/edit", isLoggedIn, fileUploader.single(
             })
 
         }else {
-            return res.redirect("/surftrickList")
+            res.render("surftricks/surftrick-list", { error: "Opps can not edit this trick!" })
         }
     })
 
@@ -118,35 +115,28 @@ router.post("/surftrickList/:surftrickId/edit", isLoggedIn, fileUploader.single(
 })
 
 
-router.post('/surftrickList/:surftrickId/delete', isLoggedIn, (req, res, next) => {
+router.post('/surftrickList/:surftrickId/delete', isLoggedIn,  (req, res, next) => {
     const author = req.user._id 
     
     Surftrick.findById(req.params.surftrickId)
         .then((surftrickFromDB)=>{
 
             if(surftrickFromDB.author == req.user._id) {
-                console.log("IT WOOOOOOORK")
                 Surftrick.findByIdAndRemove(req.params.surftrickId)
                 .then(() =>{
                     res.redirect("/surftrickList")
                 }) 
             }else {
-                return res.redirect("/surftrickList")
+                res.render("surftricks/surftrick-list", { error: "Opps you are not a creator!" })
             }
 
         })
-
         .catch((error)=>{
-            console.log("Error updating details for a single surftrick ", error);
+            console.log("Error deleating details for a single surftrick ", error);
         next(error)
 
-
         })
-
 })
-   
-
-
 
 
 

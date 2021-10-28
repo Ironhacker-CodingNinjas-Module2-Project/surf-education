@@ -155,19 +155,6 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 });
 
 
-
-// router.get("/surftrickList", (req, res, next) => {
-//   const userInSession = req.session.currentUser
-//   console.log("userinsession", userInSession)
-//   res.render("surftricks/surftrick-list", {userInSession: req.session.currentUser})
-
-// })
-//CHANGE ROUTE//
-
-
-
-
-
 router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
     if (err) {
@@ -175,8 +162,8 @@ router.get("/logout", isLoggedIn, (req, res) => {
         .status(500)
         .render("auth/logout", { errorMessage: err.message });
     }
-    res.send("bye bye it works")
-    // res.redirect("/");
+    res.redirect("/")
+    
   });
 });
 
