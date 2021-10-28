@@ -21,36 +21,63 @@
 {{else}}
 <p>Still no logged in user, sorry!</p>
 {{/if}}
-<h2>Surftrick List</h2>
 
 
- <div class=title>
-            <h1>Surftricks</h1>
-            <p>Let's level up and get all the important information about how to improve your surf level!</p>
+<h1>Surftrick List</h1>
+
+<div class="row row-eq-height">
+    {{#each data.surftricksArr}}
+    <div class="col-md-4 mb-5">
+        <div class="cards-text-center shadow p-3 mb-5 w-100 bg-white rounded" style="width: 18rem;">
+            <div class="image">
+            <img src="{{this.image}}" class="card-img-top" alt="surftrick">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{this.title}}</h5>
+                <p class="card-text">{{description}}</p>
+                <p class="card-rate">Rate of difficulty: {{this.rateOfDifficulty}}</p>
+                <p class="card-author">Posted by: {{this.author.username}}</p>
+                <a href="/surftrickList/{{this._id}}" class="btn btn-light center">More details</a>
+            </div>
         </div>
+    </div>
+    {{/each}}
+</div>
 
 
-<section id="surtricks" class="bd-dark d-flex justify-content-center align-items-center h-100 min-vh-100">
+
+{{!-- <div class=title>
+    <h1>Surftricks</h1>
+    <p>Let's level up and get all the important information about how to improve your surf level!</p>
+</div>
+--}}
+
+{{!-- <section id="surtricks"
+    class="bd-dark d-flex justify-content-center align-items-center h-100 min-vh-100 d-inline-block" style:"width:
+    120px">
     <div class="container">
-       
+
         <div class="row gy-2">
             {{#each data.surftricksArr}}
-            <div id="box" class="col-md-4">
-                <div class="cards-text-center shadow p-3 mb-5 bg-white rounded">
-                    <img src="{{this.image}}" class="card-img-top rounded boarder id="surfImage" />
+            <div id="box" class="col-4">
+                <div class="cards-text-center shadow p-3 mb-5 w-100 bg-white rounded">
+                    <div class="image-wrapper">
+                        <img src="{{this.image}}/300x500" class=" square rounded boarder" />
+                    </div>
+
                     <div class="card-body h-100 bg-white text-dark">
                         <h5 id="card-title" class="card-title text-center">{{this.name}}</h5>
                         <p class="card-rate">Rate of difficulty: {{this.rateOfDifficulty}}</p>
-                         <p class="card-author">Posted by: {{this.author.username}}</p>
-                         <a href="/surftrickList/{{this._id}}" class="btn btn-flat deep-purple-text p-1 mx-0 mb-0">More
+                        <p class="card-author">Posted by: {{this.author.username}}</p>
+                        <a href="/surftrickList/{{this._id}}" class="btn btn-flat deep-purple-text p-1 mx-0 mb-0">More
                             details</a>
                     </div>
                 </div>
             </div>
-             {{/each}}
+            {{/each}}
         </div>
     </div>
-</section>
+</section> --}}
 
 
 
@@ -139,6 +166,3 @@
         </p>
         <a href="/surftrickList/{{this._id}}" class="btn btn-flat deep-purple-text p-1 mx-0 mb-0">More details</a>
     </div> --}}
-
-
-   

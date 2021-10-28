@@ -6,7 +6,7 @@ const surftrickSchema = new Schema(
             type:String, 
             required: true
         },
-        imageURL: {
+        image: {
             type: String,
         },
         description: {
