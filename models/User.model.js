@@ -9,12 +9,6 @@ const userSchema = new Schema(
       required: [true, 'Username is required'],
       unique: true
     },
-    email: {
-      type: String, 
-      unique: true,
-      lowercase: true,
-      trim: true
-    },
     role: {
       type: String,
       default: "guest"
