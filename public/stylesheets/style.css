@@ -41,6 +41,35 @@ form button {
   margin-bottom: 20px;
 }
 
+.form-create {
+  margin: 30px auto;
+  width: 380px;
+
+}
+
+.form-group {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+
+}
+
+.submit-btn {
+  background: #07575B;
+  border: 1px solid #5F7376;
+  border-radius: 4px;
+  color: #C4DFE6;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s ease background;
+}
+
 form button {
   background: #07575B;
   border: 1px solid #5F7376;
@@ -300,3 +329,18 @@ ul li {
   transition: 0.3s ease background;
 
 }
+
+
+.general-container-details{
+  display: flex;
+  flex-direction: row;
+}
+
+.image-details{
+  width: 50px;
+}
+
+.container-img-details{
+  displaye
+}
+
