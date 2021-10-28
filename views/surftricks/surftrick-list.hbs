@@ -1,23 +1,19 @@
-<nav class="navbar navbar-expand-lg">
-    <a class="nav-link" href="/surftrickList/create">Create your Surf Trick!</a>
 
-    <ul>
-        <form id="logout-form" action="/" method="POST">
-            <button>Logout</button>
-        </form>
-        </li>
+<a class="nav-link" href="/surftrickList/create">Create your Surf Trick!</a>
 
-    </ul>
-</nav>
 
-<hr>
+
+{{#if error}}
+   <p class="error">
+   {{error}}
+   </p>
+{{/if}} 
+
 
 
 {{#if userInSession}}
 <h2>Welcome, {{ userInSession.username }}!</h2>
 <p>This is your profile page !</p>
-
-
 {{else}}
 <p>Still no logged in user, sorry!</p>
 {{/if}}
