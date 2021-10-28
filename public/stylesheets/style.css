@@ -159,11 +159,6 @@ ul li {
   
 }
 
-.logout{
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-}
 
 .name-app{
   display: flex;
@@ -252,4 +247,47 @@ ul li {
   margin-top: 50rem;
   display: flex;
   
+}
+
+.title-signup {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+/* LOG IN  PAGE*/
+.title-login {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+/* SurftrickLIST */
+
+
+.links-surftricklist{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.link-create {
+  background: #07575B;
+  border: 1px solid #5F7376;
+  border-radius: 4px;
+  color: #C4DFE6;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s ease background;
+  text-align: center;
+
+}
+
+.link-create:hover {
+  background: #95A1A2;
+  color: #fff;
+  transition: 0.3s ease background;
+
 }

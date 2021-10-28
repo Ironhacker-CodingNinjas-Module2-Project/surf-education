@@ -115,12 +115,6 @@ router.post("/surftrickList/:surftrickId/edit", isLoggedIn, fileUploader.single(
 })
 
 
-router.post("/surftrickList/:surftrickId/delete", isLoggedIn, (req, res, next)=>{
-    res.render("surftricks/surftrick-list")
-
-
-
-})
 
 
 

@@ -1,7 +1,10 @@
 
-<a class="nav-link" href="/surftrickList/create">Create your Surf Trick!</a>
 
+<div class="links-surftricklist">
+        <a class="link-create" href="/surftrickList/create">Create your Surf Trick!</a>
 
+         <a class="link-logout" href="/logout">Log out</a>
+</div>
 
 {{#if error}}
    <p class="error">
@@ -12,7 +15,7 @@
 
 
 {{#if userInSession}}
-<h2>Welcome, {{ userInSession.username }}!</h2>
+<h2>Welcome, <strong>{{ userInSession.username }}</strong>!</h2>
 <p>This is your profile page !</p>
 {{else}}
 <p>Still no logged in user, sorry!</p>
