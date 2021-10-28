@@ -6,7 +6,7 @@ Wave:#66A5AD
 Seaform: #C4DFE6 */
 
 body {
-  background-color: #BDB9B3;
+  background-color: 	#E2E2E2;
   padding: 50px;
   font-family: Roboto;
   font-size: 14px 
@@ -68,7 +68,7 @@ form button:hover {
   color: #C4DFE6;
   margin: 20px auto;
   padding: 20px;
-  width: 100%;
+  width: 30%;
 }
 
 
@@ -166,13 +166,21 @@ ul li {
   align-items: center;
 }
 
+.title-homepage {
+  font-size: 50px;
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
 #links-homepage {
   display: flex;
   flex-direction: row;
   text-align: center;
   justify-content: center;
-  margin-top: 20rem;
+  margin-top: 10rem;
 }
+
 
 .link-signup {
   background: #07575B;
@@ -219,6 +227,7 @@ ul li {
   text-transform: uppercase;
   transition: 0.3s ease background;
   text-align: center;
+  
 }
 
 

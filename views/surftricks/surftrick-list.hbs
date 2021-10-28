@@ -1,9 +1,7 @@
 
 
 <div class="links-surftricklist">
-        <a class="link-create" href="/surftrickList/create">Create your Surf Trick!</a>
-
-         <a class="link-logout" href="/logout">Log out</a>
+        <a class="link-create" href="/surftrickList/create">Create your Surf Trick!</a>      
 </div>
 
 {{#if error}}
@@ -16,13 +14,15 @@
 
 {{#if userInSession}}
 <h2>Welcome, <strong>{{ userInSession.username }}</strong>!</h2>
-<p>This is your profile page !</p>
+<p>You are in your profile page!</p>
 {{else}}
 <p>Still no logged in user, sorry!</p>
 {{/if}}
 
 
-<h1>Surftrick List</h1>
+<h1>Here you have the surftrick list!</h1>
+
+<hr>
 
 <div class="row row-eq-height">
     {{#each data.surftricksArr}}
