@@ -20,7 +20,7 @@
 {{/if}}
 
 
-<h1>Here you have the surftrick list!</h1>
+<h1>Check out the latest tricks posted form our Community!</h1>
 
 <hr>
 
@@ -33,10 +33,10 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{this.name}}</h5>
-                {{!-- <p class="card-text">{{this.description}}</p> --}}
+                <br/>
                 <p class="card-rate">Rate of difficulty: {{this.rateOfDifficulty}}</p>
                 <p class="card-author">Posted by: {{this.author.username}}</p>
-                <a href="/surftrickList/{{this._id}}" class="btn btn-light center">More details</a>
+                <a href="/surftrickList/{{this._id}}" id="button" class="btn btn-light center">More details</a>
             </div>
         </div>
     </div>

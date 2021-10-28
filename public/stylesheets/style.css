@@ -83,6 +83,7 @@ ul li {
   line-height: 20px;
 }
 
+/* Surftricklist "/" */
 
 .row-flex {
   display: flex;
@@ -99,16 +100,6 @@ ul li {
   color: #fff;
 }
 
-/* #row{
-  max-width: calc(25% - 30px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-} */
-
-
-
 .image{
   position:relative;
   overflow:hidden;
@@ -116,6 +107,8 @@ ul li {
 }
 .image img{
   position: absolute;
+  display: flex;
+  justify-content: center;
   height: 300px;
   width: auto;
 }
@@ -126,22 +119,71 @@ ul li {
   object-fit: cover;
 }
 
-/* .image-wrapper {
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-  position: relative;
-  background: rgba(0, 0, 0, 0.5);
-  margin: 10px 0;
+h5{
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
 }
-.image-wrapper img {
-  width: 100%;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-} */
 
+.card-rate{
+  display: flex;
+  justify-content: center;
+}
+
+.card-author{
+  display: flex;
+  justify-content: center;
+}
+
+#button{
+  display: flex;
+  justify-content: center;
+  background: #07575B;
+  border: 1px solid #5F7376;
+  border-radius: 4px;
+  color: #C4DFE6;
+}
+
+/* Surftrickdetail "/" */
+.box{
+float: left;
+ margin: 150px auto;
+ width: 50%;
+ padding: 8px;
+ align-self: flex-start;
+}
+
+ .imgDetail{
+  width: 500px;
+  height: auto;
+  padding: 0 0;
+  box-shadow: 5px 10px 8px #888888;
+ }
+
+.text{
+  float: right;
+  text-align: justify;
+  word-wrap: break-word;
+   width: 450px;
+   margin-top: 10%;
+   margin-right: 3%;
+}
+
+.flex{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: auto;
+}
+
+h3{
+  font-weight: bold;
+}
+
+.ratingNmr{
+  font-weight: bold;
+}
 
 /* HOMEPAGE "/" */
 
