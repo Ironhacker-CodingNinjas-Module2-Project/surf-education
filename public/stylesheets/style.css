@@ -110,14 +110,13 @@ ul li {
 .image{
   position:relative;
   overflow:hidden;
-  padding-bottom:100%;
+  padding-bottom:60%;
 }
 .image img{
   position: absolute;
   display: flex;
   justify-content: center;
   height: 300px;
-  width: auto;
 }
 
 .card-img-top {
