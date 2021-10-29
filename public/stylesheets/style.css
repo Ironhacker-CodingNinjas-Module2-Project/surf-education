@@ -399,7 +399,6 @@ form button:hover {
 
 .links-surftricklist{
   display: flex;
-  justify-content: flex-end;
   align-items: flex-start;
 }
 
@@ -410,11 +409,9 @@ form button:hover {
   color: #C4DFE6;
   cursor: pointer;
   display: inline-block;
-  display: flex;
-  justify-content: flex-start;
-  margin-right: 973px;
   font-size: 14px;
   padding: 8px 16px;
+  margin-top: 10px;
   text-decoration: none;
   text-transform: uppercase;
   transition: 0.3s ease background;
