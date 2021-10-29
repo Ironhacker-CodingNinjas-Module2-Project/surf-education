@@ -280,10 +280,10 @@ form button:hover {
 }
 
 .name-app{
-  /* display: flex;
+  display: flex;
   justify-content: flex-start;
   align-items: center; */
-}
+} 
 
 .title-homepage {
   font-size: 50px;
