@@ -69,43 +69,41 @@ router.get("/surftrickList/:surftrickId/edit", isLoggedIn, (req, res, next)=>{
     });
 });
 
-router.post("/surftrickList/:surftrickId/edit", isLoggedIn, fileUploader.single('image'), (req, res, next)=>{
-    const author = req.user._id 
-    const {name, existingImage, description, rateOfDifficulty} = req.body;
+router.post("/surftrickList/:surftrickId/edit", isLoggedIn, fileUploader.single('image'), (req, res, next) => {
+    const author = req.user._id
+    const { name, existingImage, description, rateOfDifficulty } = req.body;
     let image;
     if (req.file) {
-      imageUrl = req.file.path;
-      console.log("is this the image",image)
+        image = req.file.path;
+        console.log("is this the image", image)
     } else {
-      imageUrl = existingImage;
+        image = existingImage;
     }
     const newTrick = {
         name,
         image,
-        description, 
+        description,
         rateOfDifficulty,
     };
     Surftrick.findById(req.params.surftrickId)
-    .then((surftrickFromDB) => {
-        if(surftrickFromDB.author == req.user._id){
-            Surftrick.findByIdAndUpdate(req.params.surftrickId, newTrick, {new: true})
-            .then((surftrickFromDB)=>{
-                console.log(surftrickFromDB)
-
-                // let isOwner;
-                // if (surftrickFromDB.author == req.user._id) {
-                //     isOwner = true;
-                // } else {
-                //     isOwner = false;
-                // }
-                res.render("surftricks/surftrick-list", {isOwner,surftrickFromDB})
-            })
-        }
-    })
-    .catch((error)=>{
-        console.log("Error updating details for a single surftrick ", error);
-        next(error)
-    })
+        .then((surftrickFromDB) => {
+            if (surftrickFromDB.author == req.user._id) {
+                Surftrick.findByIdAndUpdate(req.params.surftrickId, newTrick, { new: true })
+                    .then((surftrickFromDB) => {
+                        let isOwner;
+                        if (surftrickFromDB.author == req.user._id) {
+                            isOwner = true;
+                        } else {
+                            isOwner = false;
+                        }
+                        res.redirect("/surftrickList");
+                    })
+            }
+        })
+        .catch((error) => {
+            console.log("Error updating details for a single surftrick ", error);
+            next(error)
+        })
 });
 
 
