@@ -1,11 +1,8 @@
 <a class="link-back" href="/surftrickList">Back</a>
 <div class="links-details">
-{{#if isOwner}}
+    {{#if isOwner}}
     <a class="link-edit" href="/surftrickList/{{surftrickFromDB._id}}/edit">Edit</a>
-    <form id="delete-form" action="/surftrickList/{{surftrickFromDB._id}}/delete" method="POST">
-        <button class="link-delete">Delete Surf Trick!</button>
-    </form>
-{{/if}}
+    {{/if}}
 </div>
 
 <hr />
@@ -18,9 +15,10 @@
     <h3>Rating:</h3>
     <h3 class="ratingNmr">{{surftrickFromDB.rateOfDifficulty}}</h3>
 </div>
-
-
-
-
-
-
+<br />
+<br />
+{{#if isOwner}}
+<form action="/surftrickList/{{surftrickFromDB._id}}/delete" method="POST">
+    <button id="delete-button" class="link-delete">Delete Surf Trick!</button>
+</form>
+{{/if}}

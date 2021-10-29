@@ -1,8 +1,13 @@
-
+<br/>
+<a class="link-back" href="/surftrickList">Back</a>
 
 <div class="links-surftricklist">
         <a class="link-create" href="/surftrickList/create">Create your Surf Trick!</a>      
 </div>
+
+<br/>
+<br/>
+<br/>
 
 {{#if error}}
    <p class="error">
@@ -14,7 +19,6 @@
 
 {{#if userInSession}}
 <h2>Welcome, <strong>{{ userInSession.username }}</strong>!</h2>
-<p>You are in your profile page!</p>
 {{else}}
 <p>Still no logged in user, sorry!</p>
 {{/if}}
@@ -42,5 +46,5 @@
     {{/each}}
 </div>
 
-<a href="/surftrickList">Back</a>
+<a class="link-back" href="/surftrickList">Back</a>
 
