@@ -238,6 +238,7 @@ form button:hover {
 
 .link-delete {
   display: flex;
+  
 
 }
 #delete-button{
@@ -273,16 +274,15 @@ form button:hover {
 
 .header {
   display: flex;
-  flex-direction: row ;
+  flex-direction:row;
   align-items: center;
   justify-content: space-between;
-  
 }
 
 .name-app{
-  display: flex;
+  /* display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: center; */
 }
 
 .title-homepage {
@@ -346,6 +346,12 @@ form button:hover {
   text-transform: uppercase;
   transition: 0.3s ease background;
   text-align: center;
+  
+}
+
+.logout{
+  display: flex;
+  justify-content: flex-end;
   
 }
 
