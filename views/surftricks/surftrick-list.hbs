@@ -1,5 +1,5 @@
 <br/>
-<a class="link-back" href="/surftrickList">Back</a>
+<a class="link-back" href="/">Back</a>
 
 <div class="links-surftricklist">
         <a class="link-create" href="/surftrickList/create">Create your Surf Trick!</a>      
@@ -15,14 +15,11 @@
    </p>
 {{/if}} 
 
-
-
 {{#if userInSession}}
 <h2>Welcome, <strong>{{ userInSession.username }}</strong>!</h2>
 {{else}}
 <p>Still no logged in user, sorry!</p>
 {{/if}}
-
 
 <h1>Check out the latest tricks posted form our Community!</h1>
 
@@ -46,5 +43,5 @@
     {{/each}}
 </div>
 
-<a class="link-back" href="/surftrickList">Back</a>
+<a class="link-back" href= "/" >Back</a>
 

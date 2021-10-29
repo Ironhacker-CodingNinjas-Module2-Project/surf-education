@@ -18,14 +18,15 @@
 
    <div class="header">
       
-      <h1 class="name-app"><strong>{{title}}</strong</h1>
+      <a href="/surftrickList"><h1 class="name-app"><strong>{{title}}</strong></h1></a>
       
+      {{#if isCurrentUserLoggedIn}}
       <div class="logout">
-         <a class="link-logout" href="/logout">Log out</a>
+         <a class="link-logout" href="/logout">Log out</a>   
+      {{/if}}
       </div>
    </div>
    
-    
    {{{body}}}
    
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

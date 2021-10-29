@@ -36,8 +36,6 @@ router.post("/signup", isLoggedOut, (req, res) => {
   }
 
 
-
-
   //   ! This use case is using a regular expression to control for special characters and min length
   /*
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
@@ -76,8 +74,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         // Bind the user to the session object
         
         req.session.user = user;
-        // console.log(req.session.user)
-        res.redirect("/surftrickList"); /*or may be redirect UserProfile (that at the same time will be the same of surftricklist* surftrick-lis.hbs= user-profile.hbs*/
+        res.redirect("/surftrickList"); 
       })
       .catch((error) => {
         console.log("....that was an error.....", error)
@@ -138,11 +135,9 @@ router.post("/login", isLoggedOut, (req, res, next) => {
         if (!isSamePassword) {
           return res.status(400).render("auth/login", { errorMessage: "Wrong credentials." });
         } else if (user)
+        req.app.locals.isCurrentUserLoggedIn = true
         req.session.user = user
-        // console.log("object id", user._id)
         res.redirect("/surftrickList")
-        // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
-        // return res.redirect("/surftrickList");
       });
     })
 
@@ -162,6 +157,7 @@ router.get("/logout", isLoggedIn, (req, res) => {
         .status(500)
         .render("auth/logout", { errorMessage: err.message });
     }
+    req.app.locals.isCurrentUserLoggedIn = false
     res.redirect("/")
     
   });

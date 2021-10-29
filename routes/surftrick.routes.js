@@ -33,7 +33,6 @@ router.post("/surftrickList/create", fileUploader.single('image'), isLoggedIn, (
     
     Surftrick.create({name, image, description, rateOfDifficulty, author}) 
        .then((newSurfTrickFromDB) => {
-           console.log("Info from DB",newSurfTrickFromDB )
         res.redirect("/surftrickList")
     })
     .catch((error)=>{
@@ -91,6 +90,14 @@ router.post("/surftrickList/:surftrickId/edit", isLoggedIn, fileUploader.single(
         if(surftrickFromDB.author == req.user._id){
             Surftrick.findByIdAndUpdate(req.params.surftrickId, newTrick, {new: true})
             .then((surftrickFromDB)=>{
+                console.log(surftrickFromDB)
+
+                // let isOwner;
+                // if (surftrickFromDB.author == req.user._id) {
+                //     isOwner = true;
+                // } else {
+                //     isOwner = false;
+                // }
                 res.render("surftricks/surftrick-list", {isOwner,surftrickFromDB})
             })
         }
