@@ -116,7 +116,11 @@ router.post('/surftrickList/:surftrickId/delete', isLoggedIn,  (req, res, next) 
             } else {
                 isOwner = false;
             }
-            res.render("surftricks/surftrick-list")
+            Surftrick.findByIdAndRemove(req.params.surftrickId)
+            .then(()=>{
+                res.redirect("/surftrickList");
+            })
+            
         })
         .catch((error)=>{
             console.log("Error deleating details for a single surftrick ", error);
